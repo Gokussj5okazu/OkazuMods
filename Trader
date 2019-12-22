@@ -1,0 +1,92 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+double P, TUUB, TMA, TLBB, AUBB, AMA, ALBB, TS, TMACD, AS, AMACD, TTF, ATF, THRESHOLD;
+char TF, AF, CHOICE;
+TTF = 15;
+ATF = 5;
+TF = 'S';
+AF = 'S';
+P = 7150;
+AUBB = 7175;
+AMA = 7143;
+ALBB = 7122;
+AMACD = -5.76;
+AS = -4.32;
+
+do{
+if (TF == AF){
+    if (TF == 'L'){
+            THRESHOLD = ((AMA - ALBB) * 0.66)+ALBB;
+        cout << "\nTREND TIMEFRAME    = " <<TTF<< "\n";
+        cout << "ACTION TIMEFRAME   = " <<ATF<< "\n";
+        cout << "TREND FLAG         = " <<TF<< "\n";
+        cout << "ACTION FLAG        = " <<AF<< "\n";
+        cout << "PRICE              = " <<P<< "\n";
+        cout << "UPPER BB           = " <<AUBB<< "\n";
+        cout << "MA                 = " <<AMA<< "\n";
+        cout << "LOWER BB           = " <<ALBB<< "\n";
+        cout << "MACD               = " <<AMACD<< "\n";
+        cout << "SIGNAL             = " <<AS<< "\n";
+        cout << "THRESHOLD          = " <<THRESHOLD<< "\n\n";
+            if (P < THRESHOLD){
+                if (AMACD > (AS+1)){
+        cout << "GO LONG - FLAG MATCH, MACD CROSS, AND PRICE UNDER THRESHOLD \n\n";
+                }
+                else{
+                    cout << "NO TRADE - MACD NOT GREATER THAN SIGNAL \n\n";
+            }
+            }
+            else{
+                cout << "NO TRADE - PRICE (" <<P<< ") OVER THRESHOLD OF (" <<THRESHOLD<< ")\n\n";
+            }
+    }
+    else{
+            THRESHOLD = AUBB-((AUBB - AMA) * 0.66);
+        cout << "\nTREND TIMEFRAME    = " <<TTF<< "\n";
+        cout << "ACTION TIMEFRAME   = " <<ATF<< "\n";
+        cout << "TREND FLAG         = " <<TF<< "\n";
+        cout << "ACTION FLAG        = " <<AF<< "\n";
+        cout << "PRICE              = " <<P<< "\n";
+        cout << "UPPER BB           = " <<AUBB<< "\n";
+        cout << "MA                 = " <<AMA<< "\n";
+        cout << "LOWER BB           = " <<ALBB<< "\n";
+        cout << "MACD               = " <<AMACD<< "\n";
+        cout << "SIGNAL             = " <<AS<< "\n";
+        cout << "THRESHOLD          = " <<THRESHOLD<< "\n\n";
+            if (P > THRESHOLD){
+                if (AMACD < (AS-1)){
+        cout << "GO SHORT - FLAG MATCH, MACD CROSS, AND PRICE OVER THRESHOLD \n\n";
+                }
+                else{
+                    cout << "NO TRADE - MACD NOT LESS THAN SIGNAL \n\n";
+            }
+            }
+            else{
+                cout << "NO TRADE - PRICE (" <<P<< ") UNDER THRESHOLD OF (" <<THRESHOLD<< ")\n\n";
+            }
+        }
+}
+else{
+        cout << "\nTREND TIMEFRAME    = " <<TTF<< "\n";
+        cout << "ACTION TIMEFRAME   = " <<ATF<< "\n";
+        cout << "TREND FLAG         = " <<TF<< "\n";
+        cout << "ACTION FLAG        = " <<AF<< "\n";
+        cout << "PRICE              = " <<P<< "\n";
+        cout << "UPPER BB           = " <<AUBB<< "\n";
+        cout << "MA                 = " <<AMA<< "\n";
+        cout << "LOWER BB           = " <<ALBB<< "\n";
+        cout << "MACD               = " <<AMACD<< "\n";
+        cout << "SIGNAL             = " <<AS<< "\n";
+        cout << "THRESHOLD          = " <<THRESHOLD<< "\n\n";
+        cout << "NO TRADE - FLAG MISMATCH \n\n";
+}
+   cout << "RUN AGAIN? Y/N ";
+   cin >> CHOICE;
+
+
+}while(CHOICE == 'Y' || 'y');
+  return 0;
+}
